@@ -1,0 +1,44 @@
+
+#root {
+  height: 100%;
+  width: 100%; 
+  display:  flex;
+  align-items: center;
+  justify-content: center;
+ }
+ 
+ 
+ html,body{
+   height: 100%;
+  width: 100%;
+ } 
+ 
+ a{ 
+   position: relative;
+   padding: 10px 36px;
+   margin: 10px 0 px;
+   color: #fff; 
+   overflow: hidden;
+   width: 140px;
+   text-transform: uppercase;
+   font-size: 18px ; 
+   letter-spacing: 2px; 
+   border-radius: 40px;
+   background: linear-gradient(90deg,#0162c8,#55e7fc);  
+  
+ 
+ }  
+ a:hover{ 
+  
+  background: linear-gradient(90deg,#83ce11,#cfe75a);  
+  transition: background-color 0.9s, color 0.3s;
+ }
+ input{
+  border: 0.5px solid black;
+ } 
+ @media screen and (max-width: 640px) {
+   /* .ka{
+    width: 500px;
+    height: 500px;
+   }  */
+}
