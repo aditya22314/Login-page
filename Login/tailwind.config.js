@@ -12,6 +12,9 @@ export default {
         'hunyadi-yellow': '#FFD200',
         'blue-ncs': '#0087BD',
       }, 
+      textColor: {
+        'light-gray': '#ccc',
+      },
       fontSize: {
         '7xl': '5rem',  // You can adjust the size as needed
         '8xl': '6rem',  // You can adjust the size as needed

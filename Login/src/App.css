@@ -1,3 +1,5 @@
+
+
 #root {
   height: 100%;
   width: 100%;
@@ -9,10 +11,12 @@
 html,
 body {
   height: 100%;
-  width: 100%;
+  width: 100%; 
+  background-color: beige;
+  
 }
 
-a {
+.bi{
   position: relative;
   padding: 10px 36px;
   margin: 10px 0 px;
@@ -25,12 +29,19 @@ a {
   border-radius: 40px;
   background: linear-gradient(90deg, #0162c8, #55e7fc);
 }
-a:hover {
+.bi:hover {
   background: linear-gradient(90deg, #83ce11, #cfe75a);
   transition: background-color 0.9s, color 0.3s;
 }
 input {
-  border: 0.2px solid black;
+  border: 0.2px solid black; 
+} 
+.hi{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; 
+  gap: 20px; 
+  
 }
 @media screen and (max-width: 640px) {
   /* .ka{
