@@ -14,17 +14,34 @@ const labelStyle = {
 const incStyle = {
   fontFamily: 'Cambria, sans-serif', 
   fontSize: '12px',  
-  
-  color: '#aaa',
+  fontWeight:300,
+  color: 'red',
 };
-
+ 
+const buttonStyle = {
+  position: 'fixed', // or 'absolute' depending on your requirements
+  top: '345px', // Adjust the top position as needed
+  right: '430px', // Adjust the right position as needed
+  zIndex: 9999,  
+  fontFamily: 'Cambria, sans-serif', 
+  fontSize: '12px',  
+  background: 'var(--bgc)',
+  padding: '4px 4px', // Adjust the padding values as needed
+  height:'40px',
+  width:'40px',
+  borderRadius: '50%' ,
+  transition: 'background-color 0.3s', 
+  
+};
 const validationSchema = yup.object().shape({
   username: yup.string().min(5, '*Username must be at least 5 characters').required('Username is required'),
   password: yup.string().min(8, '*Password must be at least 8 characters').required('Password is required'),
 });
 
  export const Login1 = () => {  
-
+   
+  
+  const [isVisible, setIsVisible] = useState(false)
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -57,7 +74,7 @@ const validationSchema = yup.object().shape({
     <div className='w-full h-full bg-slate-300 '>
       <div className={' ka my-box   bg-white hover:shadow-2xl transition duration-300 mx-auto my-[80px] w-[600px] h-[500px] flex justify-center items-center z-10  shadow-xl  '}> 
                 <div className='block w-[600px] h-[500px]   bg-white rounded'> 
-                <div className='mb-24 '> 
+                <div className='mb-24  '> 
                 <h1 className=' font-bold  text-7xl text-blue-ncs flex justify-center'>Login</h1>  
                 <div className='flex justify-center'> <div className="underline  w-[61px] h-[6px] bg-red-600"></div></div>
                  </div>
@@ -68,19 +85,25 @@ const validationSchema = yup.object().shape({
                  <label style={labelStyle} >Username</label>
                  <input placeholder='Enter username' className={' relative   rounded-md placeholder:text-sm'}type="text" name="username" id="username"  value={formData.username}
                 onChange={handleChange} /> 
-                  {errors.username && <div style={incStyle} className="text-red-500 absolute right-[460px]  mt-[30px]  font-extrabold text-xs ">{errors.username}</div>}
+                  {errors.username && <div style={incStyle} className="text-red-500 absolute right-[480px]  mt-[30px]  font-extrabold text-xs ">{errors.username}</div>}
                  </div>  
                 
                  <div className={'flex  justify-center gap-10'}> 
                  <FontAwesomeIcon icon={faLock} style={{ color: '#2c3068' }} size="lg" />
-                 <label style={labelStyle} >Password</label>
-                 <input placeholder='Enter password' className={' relative rounded-md placeholder:text-sm'}type="password"  name="password"
+                 <label style={labelStyle} >Password  </label>
+                 <input placeholder='Enter password' className={' relative rounded-md placeholder:text-sm'}
+                 type={isVisible?"text":"password"}  name="password"
                 id="password"
-                value={formData.password}
-                onChange={handleChange} />  
-                {errors.password && <div style={incStyle} className="text-red-500 absolute  mt-[30px] text-xs font-extrabold right-[460px]">{errors.password}</div>}
+                value={formData.password} 
+               
+                onChange={handleChange} />{errors.password && <div style={incStyle} className="text-red-500 absolute  mt-[30px] text-xs font-extrabold right-[480px]">{errors.password}</div>} 
+                <button style={{
+                  "--bgc":`${isVisible ? "linear-gradient(90deg, #83ce11, #cfe75a)":"linear-gradient(90deg, #0162c8, #55e7fc)"}`,
+                  ...buttonStyle}} onClick={()=>setIsVisible(!isVisible)}>{isVisible?"Hide":"Show"}</button>  
+                
+
                  </div>   
-                 
+                
                  <div className={'text-center  '}> 
                  <a className='bi' 
                  >Submit</a> <div className='text-right mr-4 mt-4'><h1 className='' style={labelStyle}>Change Password ?  <Link to='/password-reset' className=' text-cyan-800 font-bold' > Click Here </Link></h1> </div>  </div>  
