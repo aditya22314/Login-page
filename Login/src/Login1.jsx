@@ -3,7 +3,9 @@ import {useState} from 'react'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import * as yup from 'yup';  
-import { Link } from "react-router-dom";  
+import { Link } from "react-router-dom";   
+import EyeOpened from '~icons/material-symbols/visibility-outline'
+import EyeClosed from '~icons/material-symbols/visibility-off-outline'
 const labelStyle = {
   fontFamily: 'Cambria, sans-serif', 
   fontSize: '16px',  
@@ -26,7 +28,6 @@ const buttonStyle = {
   fontFamily: 'Cambria, sans-serif', 
   fontSize: '12px',  
   background: 'var(--bgc)',
-  padding: '4px 4px', // Adjust the padding values as needed
   height:'40px',
   width:'40px',
   borderRadius: '50%' ,
@@ -83,34 +84,39 @@ const validationSchema = yup.object().shape({
                 <div className={' flex  justify-center gap-10 '}> 
                 <FontAwesomeIcon icon={faUser} style={{ color: '#2c3068' }} size="lg" />
                  <label style={labelStyle} >Username</label>
-                 <input placeholder='Enter username' className={' relative   rounded-md placeholder:text-sm'}type="text" name="username" id="username"  value={formData.username}
-                onChange={handleChange} /> 
+            <div className='flex border-2 rounded border-slate-500 px-2 w-[220px]'> <input placeholder='Enter username' className={' relative grow  rounded-md placeholder:text-sm border-none outline-none'}type="text" name="username" id="username"  value={formData.username}
+                onChange={handleChange} />   </div> 
                   {errors.username && <div style={incStyle} className="text-red-500 absolute right-[480px]  mt-[30px]  font-extrabold text-xs ">{errors.username}</div>}
                  </div>  
                 
                  <div className={'flex  justify-center gap-10'}> 
                  <FontAwesomeIcon icon={faLock} style={{ color: '#2c3068' }} size="lg" />
                  <label style={labelStyle} >Password  </label>
-                 <input placeholder='Enter password' className={' relative rounded-md placeholder:text-sm'}
+                 <div className=' px-2  flex border-2 w-[220px] border-slate-500 rounded items-center '><input placeholder='Enter password' className={' relative rounded-md placeholder:text-sm grow border-none outline-none'}
                  type={isVisible?"text":"password"}  name="password"
                 id="password"
-                value={formData.password} 
-               
-                onChange={handleChange} />{errors.password && <div style={incStyle} className="text-red-500 absolute  mt-[30px] text-xs font-extrabold right-[480px]">{errors.password}</div>} 
-                <button style={{
-                  "--bgc":`${isVisible ? "linear-gradient(90deg, #83ce11, #cfe75a)":"linear-gradient(90deg, #0162c8, #55e7fc)"}`,
-                  ...buttonStyle}} onClick={()=>setIsVisible(!isVisible)}>{isVisible?"Hide":"Show"}</button>  
+                value={formData.password}  
+                onChange={handleChange}  />
+                <button onClick={()=>setIsVisible(!isVisible)}
+                >
+                {
+                  isVisible?(<EyeClosed/>):(<EyeOpened />)
+                }</button>
+                
+                
+                </div>{errors.password && <div style={incStyle} className="text-red-500 absolute  mt-[30px] text-xs font-extrabold right-[480px]">{errors.password}</div>}  
                 
 
                  </div>   
                 
                  <div className={'text-center  '}> 
                  <a className='bi' 
-                 >Submit</a> <div className='text-right mr-4 mt-4'><h1 className='' style={labelStyle}>Change Password ?  <Link to='/password-reset' className=' text-cyan-800 font-bold' > Click Here </Link></h1> </div>  </div>  
-              
+                 >Submit</a>   </div>  
+             
                  {/* <div className={'flex  justify-center'}><button className='  bg-mantis px-2 py-2  rounded-xl hover:bg-white mb-14'>Submit</button></div> */}
-                 </div>   
-                 <div className='flex   mb-8'>   
+                 </div>    
+                 
+                 <div className='flex  mt-8'>   
                  <div className="underline  w-1/4 h-[6px]   bg-mantis"></div>  
                  <div className="underline  w-1/4 h-[6px]   bg-heliotrope"></div> 
                  <div className="underline  w-1/4 h-[6px]  bg-hunyadi-yellow"></div> 
